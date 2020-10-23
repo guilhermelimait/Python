@@ -1,6 +1,6 @@
 import json
 
-with open("jsonfile.json") as json_file:
+with open('C:\Users\guilh\Documents\CODE\Python\read json file\readjson.py') as json_file:
     data = json.load(json_file)
     for value in data.values():
         print(value)
