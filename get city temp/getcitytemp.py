@@ -18,3 +18,5 @@ feelslike = convert_kelvin_to_celsius(feels)
 clear()
 print("\nA temperatura em", city_name, "é",temperatura,"\nA sensação térmica é de", feelslike, "\n")
 print (response)
+
+# test update
