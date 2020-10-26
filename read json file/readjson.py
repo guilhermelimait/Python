@@ -1,10 +1,11 @@
 import json
-
-with open('C:\Users\guilh\Documents\CODE\Python\read json file\readjson.py') as json_file:
+with open('jsonfile.json') as json_file:
     data = json.load(json_file)
-    for value in data.values():
+    for value in data.Name():
         print(value)
-"""
+    
+
+""" 
 with open('data.txt') as json_file:
     data = json.load(json_file)
     for p in data['people']:
