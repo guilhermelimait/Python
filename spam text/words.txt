@@ -1,0 +1,13 @@
+oi breninho
+seu indo
+esse é 
+um texto 
+que eu escrevi
+em um arquivo
+e que é
+usado para fazer
+spam nos amiguinhos
+via
+um script que
+eu fiz usando
+pyautogui
