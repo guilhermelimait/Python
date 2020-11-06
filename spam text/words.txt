@@ -1,13 +1,11 @@
-oi breninho
-seu indo
+oi fabio
 esse é 
 um texto 
 que eu escrevi
 em um arquivo
 e que é
 usado para fazer
-spam nos amiguinhos
-via
+insert em campos via
 um script que
 eu fiz usando
 pyautogui
