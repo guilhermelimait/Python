@@ -1,0 +1,43 @@
+{
+   "coord": {
+      "lon": -43.94,
+      "lat": -19.92
+   },
+   "weather": [
+      {
+         "id": 802,
+         "main": "Clouds",
+         "description": "scattered clouds",
+         "icon": "03d"
+      }
+   ],
+   "base": "stations",
+   "main": {
+      "temp": 296.25,
+      "feels_like": 296.87,
+      "temp_min": 295.15,
+      "temp_max": 297.15,
+      "pressure": 1020,
+      "humidity": 73
+   },
+   "visibility": 10000,
+   "wind": {
+      "speed": 3.1,
+      "deg": 220
+   },
+   "clouds": {
+      "all": 40
+   },
+   "dt": 1605006578,
+   "sys": {
+      "type": 1,
+      "id": 8414,
+      "country": "BR",
+      "sunrise": 1604995808,
+      "sunset": 1605042566
+   },
+   "timezone": -10800,
+   "id": 3470127,
+   "name": "Belo Horizonte",
+   "cod": 200
+}

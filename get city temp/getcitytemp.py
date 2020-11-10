@@ -12,11 +12,16 @@ def convert_kelvin_to_celsius(kelvin_temperature):
 response = requests.get(url).json()
 temp = response['main']['temp']
 feels = response['main']['feels_like']
+weather = response['weather'][0]['main']
+weather2 = response['weather'][0]['description']
 
 temperatura = convert_kelvin_to_celsius(temp)
 feelslike = convert_kelvin_to_celsius(feels)
 clear()
-print("\nA temperatura em", city_name, "é",temperatura,"\nA sensação térmica é de", feelslike, "\n")
-print (response)
+print("\nA temperatura em", city_name, "é",temperatura,"\nA sensação térmica é de", feelslike)
+print("O clima será de", weather, "com", weather2,"\n")
+
+# print (response)
+
 
 # test update
