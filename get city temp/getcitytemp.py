@@ -21,7 +21,3 @@ clear()
 print("\nA temperatura em", city_name, "é",temperatura,"\nA sensação térmica é de", feelslike)
 print("O clima será de", weather, "com", weather2,"\n")
 
-# print (response)
-
-
-# test update
