@@ -1,4 +1,4 @@
-from clear_screen import clear
+#from clear_screen import clear
 import requests
 
 API_KEY = "ee5ab21cc2405127ff46ebc7add3de6d"
@@ -21,7 +21,7 @@ temperatura = convert_kelvin_to_celsius(temp)
 temp_min = convert_kelvin_to_celsius(tempmin)
 temp_max = convert_kelvin_to_celsius(tempmax)
 feelslike = convert_kelvin_to_celsius(feels)
-clear()
+#clear()
 print("\nA temperatura em", city_name, "é",temperatura,"\nA sensação térmica é de", feelslike)
 print("Minimun temperature is:",temp_min)
 print("Maximun temperature is:",temp_max)
