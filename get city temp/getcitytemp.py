@@ -2,7 +2,7 @@
 import requests
 
 API_KEY = "ee5ab21cc2405127ff46ebc7add3de6d"
-city_name = "lagoa santa"
+city_name = "milan"
 
 url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&APPID={API_KEY}"
 response = requests.get(url).json()
