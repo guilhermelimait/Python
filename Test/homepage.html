@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Azure AI Text Integration</title>
+</head>
+<body>
+    <h1>Text Processing</h1>
+    <textarea id="textInput" rows="5" cols="50"></textarea><br>
+    <button onclick="processText()">Process Text</button>
+    <div id="result"></div>
+
+    <script>
+        async function processText() {
+            const text = document.getElementById('textInput').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/process_text', {  // Correct URL!
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'API request failed');
+                }
+
+                const result = await response.json();
+                document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
