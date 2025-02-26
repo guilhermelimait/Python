@@ -3,9 +3,12 @@ import os
 import re
 import requests
 import urllib3
-from datetime import datetime
+import sys
+from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
+import warnings
+warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
 # Simple tool to export WordPress posts into categorized Markdown files for GitHub.
 
@@ -72,7 +75,12 @@ def create_markdown_content(post_data):
     return content
 
 def get_posts(site_url, per_page=100, page=1):
-    url = f"{site_url}/wp-json/wp/v2/posts"
+    # Special handling for TechCrunch
+    if 'techcrunch.com' in site_url:
+        url = "https://techcrunch.com/wp-json/wp/v2/posts"
+    else:
+        url = f"{site_url}/wp-json/wp/v2/posts"
+    
     params = {
         'per_page': per_page,
         'page': page,
@@ -82,24 +90,27 @@ def get_posts(site_url, per_page=100, page=1):
     
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'Accept': 'application/json, text/plain, */*',
+        'Accept': 'application/json',
         'Accept-Language': 'en-US,en;q=0.9',
         'Connection': 'keep-alive'
     }
     
-    session = requests.Session()
-    session.verify = False
-    urllib3.disable_warnings()
-    
-    response = session.get(url, params=params, headers=headers)
-    
-    if response.status_code == 200:
-        total_pages = int(response.headers.get('X-WP-TotalPages', 1))
-        return response.json(), total_pages
-    elif response.status_code == 400:
+    try:
+        response = requests.get(
+            url, 
+            params=params, 
+            headers=headers, 
+            timeout=30,
+            verify=False  # Disable SSL verification
+        )
+        response.raise_for_status()
+        
+        if response.status_code == 200:
+            total_pages = int(response.headers.get('X-WP-TotalPages', 1))
+            return response.json(), total_pages
         return None, 0
-    else:
-        print(f"Error: HTTP {response.status_code} - {response.text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error accessing the API: {str(e)}")
         return None, 0
 
 def file_exists_check(filepath):
@@ -108,10 +119,81 @@ def file_exists_check(filepath):
         return response.lower() == 'y'
     return True
 
+def get_date_filter():
+    while True:
+        print("\nPlease select the time period to export:")
+        print("1. Last 24 hours")
+        print("2. Last 7 days")
+        print("3. Last 30 days")
+        print("4. Everything")
+        choice = input("Enter your choice (1-4): ").strip()
+        
+        now = datetime.now()
+        if choice == '1':
+            return now - timedelta(days=1)
+        elif choice == '2':
+            return now - timedelta(days=7)
+        elif choice == '3':
+            return now - timedelta(days=30)
+        elif choice == '4':
+            return None
+        else:
+            print("Invalid choice. Please try again.")
+
 def main():
-    site_url = "https://solucoesms.com.br"
+    print("WordPress Post Exporter")
+    print("Note: This tool only works with WordPress sites that have a public API enabled.")
+    print("Some popular sites may require authentication and won't work with this tool.")
+    print("\nSuggested sites to try:")
+    print("- https://techcrunch.com")  # Use direct TechCrunch URL
+    print("- https://wordpress.org/news")
+    print("- https://wptavern.com")
+    print("- https://make.wordpress.org\n")
     
-    output_dir = "github_solutions"
+    while True:
+        site_url = input("Enter the WordPress site URL (e.g., https://example.com): ").strip()
+        
+        # Validate URL format
+        if not site_url.startswith(('http://', 'https://')):
+            print("Error: URL must start with http:// or https://")
+            continue
+            
+        # Remove trailing slash if present
+        site_url = site_url.rstrip('/')
+        
+        # For TechCrunch, use the direct URL
+        if 'techcrunch.com' in site_url:
+            site_url = 'https://techcrunch.com'
+        
+        # Test if the site is accessible and has WordPress API
+        try:
+            test_response = requests.get(f"{site_url}/wp-json/wp/v2/posts", verify=False)
+            if test_response.status_code == 200:
+                break
+            elif test_response.status_code == 401:
+                print(f"\nError: The site {site_url} requires authentication.")
+                print("Please try one of the suggested sites above that have public APIs.")
+                retry = input("\nWould you like to try another site? (y/n): ").lower()
+                if retry != 'y':
+                    sys.exit(0)
+                continue
+            else:
+                print(f"\nError: Could not access WordPress API at {site_url}")
+                print("Please make sure this is a WordPress site with REST API enabled.")
+                retry = input("\nWould you like to try another site? (y/n): ").lower()
+                if retry != 'y':
+                    sys.exit(0)
+                continue
+        except requests.exceptions.RequestException as e:
+            print(f"\nError accessing the site: {e}")
+            retry = input("\nWould you like to try another site? (y/n): ").lower()
+            if retry != 'y':
+                sys.exit(0)
+            continue
+    
+    # Extract domain name from URL for the output directory
+    domain = urlparse(site_url).netloc
+    output_dir = sanitize_filename(domain)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -123,13 +205,22 @@ def main():
     # Add before the main loop
     overwrite_all = None
 
+    # Add date filter selection before starting export
+    date_filter = get_date_filter()
+
     while True:
         try:
             posts, total_pages = get_posts(site_url, page=page)
             if not posts:
+                print("No posts found or error accessing the API.")
                 break
 
             for post in posts:
+                # Check if post is within the selected time period
+                post_date = datetime.fromisoformat(post['date'])
+                if date_filter and post_date < date_filter:
+                    continue  # Skip posts older than the filter date
+
                 # Extract categories
                 categories = []
                 if '_embedded' in post and 'wp:term' in post['_embedded']:
@@ -196,13 +287,16 @@ def main():
                 
             page += 1
             
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching posts: {e}")
+        except Exception as e:
+            print(f"Error during export: {str(e)}")
             break
 
-    print(f"Export completed successfully!")
-    print(f"Total unique posts exported: {len(unique_posts)}")
-    print(f"Total images downloaded: {image_counter[0]}")
+    if total_posts > 0:
+        print(f"\nExport completed successfully!")
+        print(f"Total unique posts exported: {len(unique_posts)}")
+        print(f"Total images downloaded: {image_counter[0]}")
+    else:
+        print("\nExport failed: No posts were exported.")
 
 if __name__ == "__main__":
     main()
