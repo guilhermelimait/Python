@@ -1,21 +1,30 @@
-# 📝 WordPress to GitHub Export
+# WordPress to GitHub Export
 import os
 import re
 import requests
-import urllib3
 import sys
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
-import warnings
-warnings.filterwarnings('ignore', message='Unverified HTTPS request')
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Simple tool to export WordPress posts into categorized Markdown files for GitHub.
+
+
+def create_session(verify_ssl=True):
+    session = requests.Session()
+    retry = Retry(total=3, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504])
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    session.verify = verify_ssl
+    return session
 
 def sanitize_filename(title):
     return re.sub(r'[^\w\s-]', '', title).strip().lower().replace(' ', '-')
 
-def download_image(image_url, category_dir, post_title, site_url, image_counter):
+def download_image(session, image_url, category_dir, post_title, site_url, image_counter):
     try:
         # Handle relative URLs
         if image_url.startswith('//'):
@@ -40,7 +49,7 @@ def download_image(image_url, category_dir, post_title, site_url, image_counter)
         image_path = os.path.join(images_dir, image_name)
         
         # Download image
-        response = requests.get(image_url, verify=False)
+        response = session.get(image_url, timeout=20)
         if response.status_code == 200:
             with open(image_path, 'wb') as f:
                 f.write(response.content)
@@ -51,7 +60,7 @@ def download_image(image_url, category_dir, post_title, site_url, image_counter)
         print(f"Error downloading image {image_url}: {e}")
     return None
 
-def process_content(content, category_dir, post_title, site_url, image_counter):
+def process_content(session, content, category_dir, post_title, site_url, image_counter):
     soup = BeautifulSoup(content, 'html.parser')
     
     # Find all images
@@ -59,7 +68,7 @@ def process_content(content, category_dir, post_title, site_url, image_counter):
         src = img.get('src')
         if src:
             # Download image and get new path
-            new_path = download_image(src, category_dir, post_title, site_url, image_counter)
+            new_path = download_image(session, src, category_dir, post_title, site_url, image_counter)
             if new_path:
                 # Update image source in content
                 content = content.replace(src, new_path)
@@ -74,7 +83,7 @@ def create_markdown_content(post_data):
     content += post_data['content']
     return content
 
-def get_posts(site_url, per_page=100, page=1):
+def get_posts(session, site_url, per_page=100, page=1):
     # Special handling for TechCrunch
     if 'techcrunch.com' in site_url:
         url = "https://techcrunch.com/wp-json/wp/v2/posts"
@@ -96,12 +105,11 @@ def get_posts(site_url, per_page=100, page=1):
     }
     
     try:
-        response = requests.get(
-            url, 
-            params=params, 
-            headers=headers, 
+        response = session.get(
+            url,
+            params=params,
+            headers=headers,
             timeout=30,
-            verify=False  # Disable SSL verification
         )
         response.raise_for_status()
         
@@ -140,6 +148,11 @@ def get_date_filter():
         else:
             print("Invalid choice. Please try again.")
 
+
+def parse_wp_date(date_str):
+    normalized = date_str.replace('Z', '+00:00')
+    return datetime.fromisoformat(normalized)
+
 def main():
     print("WordPress Post Exporter")
     print("Note: This tool only works with WordPress sites that have a public API enabled.")
@@ -149,6 +162,12 @@ def main():
     print("- https://wordpress.org/news")
     print("- https://wptavern.com")
     print("- https://make.wordpress.org\n")
+
+    allow_insecure = os.environ.get("ALLOW_INSECURE_SSL", "false").lower() == "true"
+    if allow_insecure:
+        print("Insecure SSL allowed via ALLOW_INSECURE_SSL env var. Certificates will not be verified.\n")
+    verify_ssl = not allow_insecure
+    session = create_session(verify_ssl)
     
     while True:
         site_url = input("Enter the WordPress site URL (e.g., https://example.com): ").strip()
@@ -167,7 +186,7 @@ def main():
         
         # Test if the site is accessible and has WordPress API
         try:
-            test_response = requests.get(f"{site_url}/wp-json/wp/v2/posts", verify=False)
+            test_response = session.get(f"{site_url}/wp-json/wp/v2/posts")
             if test_response.status_code == 200:
                 break
             elif test_response.status_code == 401:
@@ -210,14 +229,14 @@ def main():
 
     while True:
         try:
-            posts, total_pages = get_posts(site_url, page=page)
+            posts, total_pages = get_posts(session, site_url, page=page)
             if not posts:
                 print("No posts found or error accessing the API.")
                 break
 
             for post in posts:
                 # Check if post is within the selected time period
-                post_date = datetime.fromisoformat(post['date'])
+                post_date = parse_wp_date(post['date'])
                 if date_filter and post_date < date_filter:
                     continue  # Skip posts older than the filter date
 
@@ -235,7 +254,7 @@ def main():
                 post_data = {
                     'title': post['title']['rendered'],
                     'content': post['content']['rendered'],
-                    'date': datetime.fromisoformat(post['date']).strftime('%Y-%m-%d %H:%M:%S'),
+                    'date': parse_wp_date(post['date']).strftime('%Y-%m-%d %H:%M:%S'),
                     'categories': categories
                 }
 
@@ -268,7 +287,7 @@ def main():
 
                     if should_write:
                         # Process content to download images and update references
-                        processed_content = process_content(post_data['content'], category_dir, post_data['title'], site_url, image_counter)
+                        processed_content = process_content(session, post_data['content'], category_dir, post_data['title'], site_url, image_counter)
                         post_data['content'] = processed_content
 
                         with open(filepath, 'w', encoding='utf-8') as f:
