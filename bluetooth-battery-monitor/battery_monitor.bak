@@ -16,100 +16,45 @@ Author: Python Projects Collection
 """
 
 import asyncio
-import importlib
 import subprocess
 import sys
 import threading
 from datetime import datetime
 from typing import List, Optional
 
-# Dependency state flags (refreshed at runtime)
-BLEAK_AVAILABLE = False
-WMI_AVAILABLE = False
-TRAY_AVAILABLE = False
-NOTIFICATION_AVAILABLE = False
+# Optional libraries
+try:
+    from bleak import BleakScanner, BleakClient
+    BLEAK_AVAILABLE = True
+except ImportError:
+    BLEAK_AVAILABLE = False
+    print("⚠️  'bleak' not installed. Install with: pip install bleak")
 
-# Modules (populated in refresh step)
-BleakScanner = None
-BleakClient = None
-wmi = None
-pystray = None
-Image = None
-ImageDraw = None
-ImageFont = None
-notification = None
+try:
+    import wmi
+    WMI_AVAILABLE = True
+except ImportError:
+    WMI_AVAILABLE = False
+    print("⚠️  'wmi' not installed. Install with: pip install wmi")
 
-REQUIRED_PACKAGES = [
-    ("bleak", "bleak"),
-    ("wmi", "wmi"),
-    ("psutil", "psutil"),
-    ("pystray", "pystray"),
-    ("pillow", "PIL"),
-    ("plyer", "plyer"),
-]
+try:
+    import pystray
+    from PIL import Image, ImageDraw, ImageFont
+    TRAY_AVAILABLE = True
+except ImportError:
+    TRAY_AVAILABLE = False
+    print("⚠️  'pystray' or 'pillow' not installed. Install with: pip install pystray pillow")
 
-
-def refresh_optional_imports() -> None:
-    """Attempt to import optional libraries and set availability flags."""
-    global BLEAK_AVAILABLE, WMI_AVAILABLE, TRAY_AVAILABLE, NOTIFICATION_AVAILABLE
-    global BleakScanner, BleakClient, wmi, pystray, Image, ImageDraw, ImageFont, notification
-
-    BLEAK_AVAILABLE = WMI_AVAILABLE = TRAY_AVAILABLE = NOTIFICATION_AVAILABLE = False
-
-    try:
-        import bleak
-        BleakScanner = bleak.BleakScanner
-        BleakClient = bleak.BleakClient
-        BLEAK_AVAILABLE = True
-    except Exception:
-        BLEAK_AVAILABLE = False
-
-    try:
-        import wmi as _wmi
-        wmi = _wmi
-        WMI_AVAILABLE = True
-    except Exception:
-        WMI_AVAILABLE = False
-
-    try:
-        import pystray as _pystray
-        from PIL import Image as _Image, ImageDraw as _ImageDraw, ImageFont as _ImageFont
-
-        pystray = _pystray
-        Image = _Image
-        ImageDraw = _ImageDraw
-        ImageFont = _ImageFont
-        TRAY_AVAILABLE = True
-    except Exception:
-        TRAY_AVAILABLE = False
-
-    try:
-        from plyer import notification as _notification
-
-        notification = _notification
-        NOTIFICATION_AVAILABLE = True
-    except Exception:
-        NOTIFICATION_AVAILABLE = False
-
-
-def ensure_dependencies() -> None:
-    """Install any missing packages once, then refresh imports."""
-    missing = []
-    for package, module_name in REQUIRED_PACKAGES:
-        try:
-            importlib.import_module(module_name)
-        except ImportError:
-            missing.append(package)
-    if missing:
-        print(f"📥 Installing missing packages: {', '.join(missing)}")
-        result = subprocess.run([sys.executable, "-m", "pip", "install", *missing])
-        if result.returncode != 0:
-            print("⚠️  Some packages failed to install. You may need to rerun with administrator rights.")
-    refresh_optional_imports()
+try:
+    from plyer import notification
+    NOTIFICATION_AVAILABLE = True
+except ImportError:
+    NOTIFICATION_AVAILABLE = False
+    print("⚠️  'plyer' not installed. Install with: pip install plyer")
 
 
 class BluetoothBatteryChecker:
-    """Check battery levels of Bluetooth devices."""
+    """Check battery levels of Bluetooth devices"""
 
     def __init__(self):
         self.devices: List[dict] = []
@@ -123,10 +68,10 @@ class BluetoothBatteryChecker:
         if battery_level is None:
             return "⚪"  # Unknown
         if battery_level >= 70:
-            return "🟢"  # High
+            return "🟢"  # Green - High
         if battery_level >= 20:
-            return "🟡"  # Medium
-        return "🔴"      # Low
+            return "🟡"  # Yellow - Medium
+        return "🔴"      # Red - Low
 
     def create_tray_icon(self, battery_level: Optional[int]):
         if not TRAY_AVAILABLE:
@@ -165,7 +110,7 @@ class BluetoothBatteryChecker:
             return
         try:
             notification.notify(title=title, message=message, app_name="Bluetooth Battery Monitor", timeout=5)
-        except Exception as exc:  # pragma: no cover
+        except Exception as exc:  # pragma: no cover - best effort
             print(f"Notification error: {exc}")
 
     def check_battery_alert(self, battery_level: Optional[int]):
@@ -174,7 +119,7 @@ class BluetoothBatteryChecker:
         if self.last_battery_level is not None:
             if battery_level < 20 <= self.last_battery_level:
                 self.show_notification("🔴 Low Battery", f"Battery is low: {battery_level}%")
-            if battery_level >= 70 and self.last_battery_level < 70:
+            if battery_level >= 70 and (self.last_battery_level < 70):
                 self.show_notification("🟢 Battery Charged", f"Battery is charged: {battery_level}%")
         self.last_battery_level = battery_level
 
@@ -292,8 +237,6 @@ class BluetoothBatteryChecker:
 
 # ---------- UI Helpers ----------
 
-
-def print_header():
     print("\n" + "=" * 60)
     print("🎧 BLUETOOTH HEADSET BATTERY CHECKER 🔋")
     print("=" * 60)
@@ -503,8 +446,10 @@ async def main():
 
 def install_dependencies():
     print("📥 Installing required dependencies...\n")
-    packages = [pkg for pkg, _ in REQUIRED_PACKAGES]
-    subprocess.run([sys.executable, "-m", "pip", "install", *packages])
+    packages = ["bleak", "wmi", "psutil", "pystray", "pillow", "plyer"]
+    for package in packages:
+        print(f"Installing {package}...")
+        subprocess.run([sys.executable, "-m", "pip", "install", package])
     print("\n✅ Installation complete!")
     print("💡 Restart the script to use all features")
 
@@ -512,13 +457,12 @@ def install_dependencies():
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--install":
         install_dependencies()
-        sys.exit(0)
-
-    ensure_dependencies()
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\n\n👋 Interrupted by user. Goodbye!\n")
-    except Exception as exc:
-        print(f"\n❌ Error: {exc}")
-        print("💡 Try running: python battery_monitor.py --install")
+    else:
+        try:
+            asyncio.run(main())
+        except KeyboardInterrupt:
+            print("\n\n👋 Interrupted by user. Goodbye!\n")
+        except Exception as exc:
+            print(f"\n❌ Error: {exc}")
+            print("💡 Try running: python battery_monitor.py --install")
+                except ValueError:
