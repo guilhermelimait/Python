@@ -291,33 +291,6 @@ python-projects/
 
 ---
 
-## 🎨 Folder Naming Convention
-
-All folders follow the **kebab-case** naming standard for consistency and modern best practices:
-
-| ❌ Old Name | ✅ New Name | 📝 Description |
-|------------|-------------|----------------|
-| `Audible text` | `text-to-speech` | Descriptive and standardized |
-| `check url` | `url-monitor` | Clear purpose indication |
-| `Export-Wordpress-Posts-To-Github` | `wordpress-to-github` | Simplified and readable |
-| `geradorsenhas` | `password-generator` | English and descriptive |
-| `get city temp` | `weather-api` | API-focused naming |
-| `PDFJoiner` | `pdf-joiner` | Consistent lowercase |
-| `random examples` | `learning-examples` | Purpose-driven name |
-| `read json file` | `json-basics` | Skill-level indication |
-| `read json file 2` | `json-user-management` | Specific use case |
-| `spam text` | `text-automation` | Professional terminology |
-
-**Benefits of kebab-case:**
-- 🌐 GitHub/Git friendly
-- 🔗 URL safe (no encoding needed)
-- 👁️ Highly readable
-- 💻 Cross-platform compatible
-- 📱 Mobile-friendly
-- 🤝 Industry standard
-
----
-
 ## 🛠️ Technologies Used
 
 | Technology | Projects | Purpose |
