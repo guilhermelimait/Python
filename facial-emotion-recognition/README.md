@@ -262,3 +262,6 @@ For questions or feedback, please open an issue on GitHub.
 ---
 
 **Made with ❤️ using Python, MediaPipe, and OpenCV**
+
+**Part of the [Python Projects Collection](../README.md)**
+

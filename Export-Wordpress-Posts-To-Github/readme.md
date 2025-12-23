@@ -86,3 +86,7 @@ After export, the script shows:
 ## 📜 License
 
 MIT License
+
+---
+
+**Part of the [Python Projects Collection](../README.md)**
