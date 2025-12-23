@@ -6,6 +6,7 @@
 |------|-------------|------|-------------|
 | 🎭 | `facial-emotion-recognition` | Featured | AI emotion detection with MediaPipe |
 | 📝 | `wordpress-to-github` | Featured | Export WordPress to Markdown |
+| 🎧 | `bluetooth-battery-monitor` | Featured | Check Bluetooth device battery levels |
 | 📄 | `pdf-joiner` | Utility | Merge multiple PDF files |
 | 🌡️ | `weather-api` | Utility | Get weather data via API |
 | 🔊 | `text-to-speech` | Utility | Convert text/PDF to audio |
@@ -24,6 +25,7 @@
 # Navigate to any project
 cd facial-emotion-recognition
 cd wordpress-to-github
+cd bluetooth-battery-monitor
 cd pdf-joiner
 cd weather-api
 cd text-to-speech
@@ -37,8 +39,10 @@ cd json-user-management
 # Install dependencies for featured projects
 cd facial-emotion-recognition && pip install -r requirements.txt
 cd wordpress-to-github && pip install requests beautifulsoup4
+cd bluetooth-battery-monitor && pip install -r requirements.txt
 
 # Run utilities
+cd bluetooth-battery-monitor && python battery_monitor.py
 cd pdf-joiner && python pdfjoiner.py
 cd weather-api && python getcitytemp.py
 cd text-to-speech && python audible1.py
@@ -90,6 +94,7 @@ Build on your knowledge:
 Challenge yourself:
 1. `facial-emotion-recognition/` - AI/ML with computer vision
 2. `wordpress-to-github/` - Web scraping & automation
+3. `bluetooth-battery-monitor/` - Bluetooth & hardware integration
 
 ---
 
@@ -99,6 +104,7 @@ Challenge yourself:
 |---------|-------------------|
 | facial-emotion-recognition | opencv-python, mediapipe, numpy |
 | wordpress-to-github | requests, beautifulsoup4 |
+| bluetooth-battery-monitor | bleak, wmi, psutil |
 | pdf-joiner | PyPDF2 |
 | weather-api | requests |
 | text-to-speech | pyttsx3, PyPDF2 |
@@ -116,9 +122,11 @@ Challenge yourself:
 ### 💼 Professional Tools
 - `facial-emotion-recognition/` - Research & development
 - `wordpress-to-github/` - Content migration
+- `bluetooth-battery-monitor/` - Hardware monitoring
 - `url-monitor/` - System administration
 
 ### 🛠️ Daily Utilities
+- `bluetooth-battery-monitor/` - Check headset battery
 - `password-generator/` - Security
 - `weather-api/` - Information
 - `pdf-joiner/` - Document management

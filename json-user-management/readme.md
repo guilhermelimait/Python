@@ -213,14 +213,7 @@ def get_user_stats():
     return stats
 ```
 
-## 📚 Project Completion Checklist
-
-- ✅ Create a JSON file with username and password (2020-11-19)
-- ✅ Create a script to read JSON and print to screen (2020-11-19)
-- ✅ Create a script to modify JSON attributes (2020-11-19)
-- ✅ Save the modified file (2020-11-19)
-
-## 💡 Use Cases
+##  Use Cases
 
 - **User Management Systems**: Store and manage user accounts
 - **Authentication**: Simple login systems

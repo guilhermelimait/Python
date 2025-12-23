@@ -99,24 +99,7 @@ All folders follow **kebab-case** (lowercase with hyphens) for consistency:
 
 ---
 
-## 🔄 Migration Reference
-
-| ❌ Old Name | ✅ New Name | 🏷️ Category |
-|------------|-------------|-------------|
-| `Audible text` | `text-to-speech` | Utility |
-| `check url` | `url-monitor` | Utility |
-| `Export-Wordpress-Posts-To-Github` | `wordpress-to-github` | Featured |
-| `geradorsenhas` | `password-generator` | Utility |
-| `get city temp` | `weather-api` | Utility |
-| `PDFJoiner` | `pdf-joiner` | Utility |
-| `random examples` | `learning-examples` | Education |
-| `read json file` | `json-basics` | Education |
-| `read json file 2` | `json-user-management` | Education |
-| `spam text` | `text-automation` | Utility |
-
----
-
-## 📂 Category Structure
+##  Category Structure
 
 ### 🌟 Featured Projects (2)
 Advanced, production-ready applications

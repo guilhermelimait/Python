@@ -69,6 +69,29 @@ python ExportWordpressToGithub.py
 
 ---
 
+### 3. **Bluetooth Battery Monitor** 🎧
+**Location:** `bluetooth-battery-monitor/`
+
+Monitor battery levels of Bluetooth headsets and devices on Windows:
+- **Multiple Detection Methods**: BLE, PowerShell, WMI, Windows API
+- **Device Scanning**: Discover nearby Bluetooth devices automatically
+- **Real-time Monitoring**: Check battery percentage on demand
+- **Interactive Interface**: Easy-to-use menu system
+- **Wide Compatibility**: Works with most modern Bluetooth headphones
+
+**Technologies:** Bleak (BLE), WMI, Windows PowerShell
+
+**Quick Start:**
+```bash
+cd bluetooth-battery-monitor
+pip install -r requirements.txt
+python battery_monitor.py
+```
+
+[📖 Full Documentation](bluetooth-battery-monitor/README.md)
+
+---
+
 ## 🔧 Utility Scripts
 
 ### 📄 PDF Management
@@ -156,7 +179,6 @@ Perfect for beginners learning Python! Includes:
 | `getcurrency.py` | Currency converter | API calls, JSON parsing |
 | `passwordgenerator.py` | Password generator | Random, string operations |
 | `colorprint.py` | Colored console output | Terminal formatting |
-| `batteryindicatorheadset.py` | Battery monitoring | System information |
 | `notify2.py` | Desktop notifications | Windows integration |
 
 ---
@@ -230,6 +252,11 @@ pip install PyPDF2
 pip install pyttsx3 PyPDF2
 ```
 
+#### Bluetooth Battery Monitor
+```bash
+pip install bleak wmi psutil
+```
+
 #### Windows Notifications
 ```bash
 pip install win10toast
@@ -270,6 +297,11 @@ python-projects/
 │   ├── ExportWordpressToGithub.py   # Main export script
 │   └── readme.md                    # Documentation
 │
+├── 🎧 bluetooth-battery-monitor/    # Bluetooth device battery checker
+│   ├── battery_monitor.py           # Main monitoring script
+│   ├── requirements.txt             # Dependencies
+│   └── README.md                    # Full documentation
+│
 ├── 🔧 Utility Scripts
 │   ├── 📄 pdf-joiner/               # Merge PDF files
 │   ├── 🌡️  weather-api/             # Real-time weather data
@@ -298,6 +330,8 @@ python-projects/
 | **OpenCV** | Facial Emotion Recognition | Computer vision and image processing |
 | **MediaPipe** | Facial Emotion Recognition | Face mesh and landmark detection |
 | **NumPy** | Facial Emotion Recognition | Mathematical operations |
+| **Bleak** | Bluetooth Battery Monitor | Bluetooth Low Energy scanning |
+| **WMI** | Bluetooth Battery Monitor | Windows Management Instrumentation |
 | **BeautifulSoup4** | WordPress Exporter | HTML parsing |
 | **Requests** | Multiple projects | HTTP requests and API calls |
 | **PyPDF2** | PDF tools | PDF manipulation |
@@ -313,12 +347,18 @@ python-projects/
 - **Learn Python**: Start with examples in `learning-examples/`
 - **API Integration**: See real-world examples with OpenWeatherMap, WordPress API
 - **Computer Vision**: Explore MediaPipe and OpenCV in emotion recognition
+- **Bluetooth Development**: Work with BLE and Windows Bluetooth stack
 - **Automation**: Study pyautogui implementations
 
 ### For Content Creators
 - **WordPress Migration**: Export your blog to Markdown
 - **PDF Processing**: Merge documents programmatically
 - **Text-to-Speech**: Convert articles to audio
+
+### For Hardware Enthusiasts
+- **Bluetooth Monitoring**: Check headset battery levels
+- **Device Integration**: Connect with Bluetooth peripherals
+- **System Monitoring**: Track device status
 
 ### For Researchers
 - **Emotion Detection**: Real-time facial analysis

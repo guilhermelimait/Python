@@ -238,17 +238,6 @@ with open("file.txt", 'r') as f:
    if age > 18:
    ```
 
-## 🎓 Next Steps
-
-After completing these examples:
-
-1. **Build Real Projects**: Apply concepts to solve real problems
-2. **Learn Libraries**: Explore NumPy, Pandas, Flask
-3. **Data Structures**: Study algorithms and data structures
-4. **Object-Oriented**: Learn classes and OOP concepts
-5. **Web Development**: Try Flask or Django
-6. **Data Science**: Explore data analysis and ML
-
 ## 📄 License
 
 MIT License - Feel free to use and modify for your learning.
