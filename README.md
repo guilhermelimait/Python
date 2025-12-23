@@ -47,7 +47,7 @@ python emotion_detector.py
 ---
 
 ### 2. **WordPress to GitHub Exporter** 📝
-**Location:** `Export-Wordpress-Posts-To-Github/`
+**Location:** `wordpress-to-github/`
 
 Export WordPress posts to categorized Markdown files perfect for static sites:
 - **Time Period Selection**: Last 24h, 7 days, 30 days, or all posts
@@ -60,71 +60,77 @@ Export WordPress posts to categorized Markdown files perfect for static sites:
 
 **Quick Start:**
 ```bash
-cd Export-Wordpress-Posts-To-Github
+cd wordpress-to-github
 pip install requests beautifulsoup4
 python ExportWordpressToGithub.py
 ```
 
-[📖 Full Documentation](Export-Wordpress-Posts-To-Github/readme.md)
+[📖 Full Documentation](wordpress-to-github/readme.md)
 
 ---
 
 ## 🔧 Utility Scripts
 
-### PDF Management
-**Location:** `PDFJoiner/`
+### 📄 PDF Management
+**Location:** `pdf-joiner/`
 - **pdfjoiner.py**: Merge multiple PDF files into a single document
 - **Dependencies:** PyPDF2 or pyPdf
 
 ```bash
+cd pdf-joiner
 python pdfjoiner.py file1.pdf file2.pdf output.pdf
 ```
 
-### Weather Information
-**Location:** `get city temp/`
+### 🌡️ Weather Information
+**Location:** `weather-api/`
 - **getcitytemp.py**: Get real-time weather data for any city
 - **Features:** Temperature, feels like, min/max, weather conditions
 - **API:** OpenWeatherMap integration
 
 ```bash
+cd weather-api
 python getcitytemp.py
 ```
 
-### Text-to-Speech
-**Location:** `Audible text/`
+### 🔊 Text-to-Speech
+**Location:** `text-to-speech/`
 - **audible1.py**: Convert text to speech
 - **audiblepdf.py**: Read PDF files aloud
 - **Dependencies:** pyttsx3, PyPDF2
 
 ```bash
+cd text-to-speech
 python audible1.py
 ```
 
-### Password Generator
-**Location:** `geradorsenhas/`
+### 🔐 Password Generator
+**Location:** `password-generator/`
 - **gerasenha.py**: Generate secure random passwords
 - **Features:** Configurable length, uppercase, lowercase, digits, special characters
 
 ```bash
+cd password-generator
 python gerasenha.py
 ```
 
-### URL Monitor
-**Location:** `check url/`
+### 🔍 URL Monitor
+**Location:** `url-monitor/`
 - **checkurl.py**: Monitor website status and get desktop notifications
 - **Features:** HTTP status checking, Windows toast notifications
 - **Dependencies:** requests, win10toast
 
 ```bash
+cd url-monitor
 python checkurl.py
 ```
 
-### Automation Tools
-**Location:** `spam text/`
+### ⚡ Text Automation
+**Location:** `text-automation/`
 - **spam.py**: Automate text typing from file (for testing)
 - **Dependencies:** pyautogui
 
 ```bash
+cd text-automation
 python spam.py
 ```
 
@@ -132,7 +138,7 @@ python spam.py
 
 ## 📚 Learning Examples
 
-**Location:** `random examples/`
+**Location:** `learning-examples/`
 
 Perfect for beginners learning Python! Includes:
 
@@ -157,8 +163,8 @@ Perfect for beginners learning Python! Includes:
 
 ## 📂 Data Handling Examples
 
-### JSON Operations
-**Location:** `read json file/` and `read json file 2/`
+### 📊 JSON Operations
+**Location:** `json-basics/` and `json-user-management/`
 
 Examples of working with JSON data:
 - Reading JSON files
@@ -167,7 +173,12 @@ Examples of working with JSON data:
 - User data management
 
 ```bash
-cd "read json file 2"
+# Basic JSON operations
+cd json-basics
+python readjson.py
+
+# Advanced user management
+cd json-user-management
 python readjson.py
 python writejson.py
 ```
@@ -247,19 +258,63 @@ pip install win10toast
 ## 📁 Repository Structure
 
 ```
-Python/
+python-projects/
+│
 ├── 🎭 facial-emotion-recognition/    # AI-powered emotion detection suite
-├── 📝 Export-Wordpress-Posts-To-Github/  # WordPress content exporter
-├── 📄 PDFJoiner/                     # PDF manipulation tools
-├── 🌡️  get city temp/                 # Weather information API
-├── 🔊 Audible text/                  # Text-to-speech utilities
-├── 🔐 geradorsenhas/                 # Password generation
-├── 🔍 check url/                     # URL monitoring and notifications
-├── ⚡ spam text/                     # Automation scripts
-├── 📚 random examples/               # Learning examples for beginners
-├── 📊 read json file/                # JSON handling examples
-└── 📊 read json file 2/              # Advanced JSON operations
+│   ├── emotion_detector.py          # Real-time emotion detection
+│   ├── emotion_trainer.py           # Personalized calibration
+│   ├── face_puppeteer.py            # Animate photos with expressions
+│   └── requirements.txt             # Project dependencies
+│
+├── 📝 wordpress-to-github/           # WordPress content exporter
+│   ├── ExportWordpressToGithub.py   # Main export script
+│   └── readme.md                    # Documentation
+│
+├── 🔧 Utility Scripts
+│   ├── 📄 pdf-joiner/               # Merge PDF files
+│   ├── 🌡️  weather-api/             # Real-time weather data
+│   ├── 🔊 text-to-speech/           # Text and PDF to audio
+│   ├── 🔐 password-generator/       # Secure password creation
+│   ├── 🔍 url-monitor/              # Website status monitoring
+│   └── ⚡ text-automation/          # Automated text typing
+│
+├── 📚 learning-examples/            # Beginner-friendly tutorials
+│   ├── helloworld.py                # Your first program
+│   ├── guessthenumber.py            # Interactive game
+│   ├── hangman.py                   # Classic word game
+│   └── [15+ more examples]          # Full learning path
+│
+└── 📊 Data Handling
+    ├── json-basics/                 # JSON read/write fundamentals
+    └── json-user-management/        # Advanced JSON operations
 ```
+
+---
+
+## 🎨 Folder Naming Convention
+
+All folders follow the **kebab-case** naming standard for consistency and modern best practices:
+
+| ❌ Old Name | ✅ New Name | 📝 Description |
+|------------|-------------|----------------|
+| `Audible text` | `text-to-speech` | Descriptive and standardized |
+| `check url` | `url-monitor` | Clear purpose indication |
+| `Export-Wordpress-Posts-To-Github` | `wordpress-to-github` | Simplified and readable |
+| `geradorsenhas` | `password-generator` | English and descriptive |
+| `get city temp` | `weather-api` | API-focused naming |
+| `PDFJoiner` | `pdf-joiner` | Consistent lowercase |
+| `random examples` | `learning-examples` | Purpose-driven name |
+| `read json file` | `json-basics` | Skill-level indication |
+| `read json file 2` | `json-user-management` | Specific use case |
+| `spam text` | `text-automation` | Professional terminology |
+
+**Benefits of kebab-case:**
+- 🌐 GitHub/Git friendly
+- 🔗 URL safe (no encoding needed)
+- 👁️ Highly readable
+- 💻 Cross-platform compatible
+- 📱 Mobile-friendly
+- 🤝 Industry standard
 
 ---
 
@@ -282,7 +337,7 @@ Python/
 ## 💡 Use Cases
 
 ### For Developers
-- **Learn Python**: Start with examples in `random examples/`
+- **Learn Python**: Start with examples in `learning-examples/`
 - **API Integration**: See real-world examples with OpenWeatherMap, WordPress API
 - **Computer Vision**: Explore MediaPipe and OpenCV in emotion recognition
 - **Automation**: Study pyautogui implementations
