@@ -1,108 +1,70 @@
-# 🔊 Audible Text - Text-to-Speech Utilities
+# Audible Text - Text-to-Speech Utilities
 
-Convert text and PDF documents to speech using Python's text-to-speech capabilities.
+Convert text (and PDFs) to speech using Python's text-to-speech capabilities.
 
-## 📝 Description
+## Description
 
-A collection of text-to-speech utilities that enable you to convert written text and PDF documents into audible speech using the pyttsx3 engine.
+Utilities that read text aloud with `pyttsx3`. `audible1.py` now accepts text from the command line, exposes rate/volume settings, and includes basic error handling. `audiblepdf.py` reads PDF files aloud.
 
-## ✨ Features
+## Features
 
-- **Text-to-Speech**: Convert any text string to speech
-- **PDF Reader**: Read PDF documents aloud
-- **Offline Processing**: No internet connection required
-- **Multiple Voice Options**: Choose from available system voices
-- **Cross-Platform**: Works on Windows, macOS, and Linux
+- Text-to-speech with configurable rate and volume
+- CLI text input: `python audible1.py "Hello world"`
+- Offline processing (no network required)
+- PDF-to-speech helper (`audiblepdf.py`)
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Python 3.8+
 - System audio output
 
-## 📦 Installation
+## Installation
 
 ```bash
-# Install required packages
 pip install pyttsx3 PyPDF2
 ```
 
-## 🚀 Usage
+## Usage
 
-### Basic Text-to-Speech
+### Text-to-speech
 
 ```bash
+# Default text
 python audible1.py
+
+# Custom text
+python audible1.py "This is a test"
 ```
 
-**Script functionality:**
+Key snippet:
+
 ```python
-import pyttsx3
-texttospeach = pyttsx3.init()
-texttospeach.say("That is awesome!")
-texttospeach.runAndWait()
+def speak(text, rate=150, volume=1.0):
+	engine = pyttsx3.init()
+	engine.setProperty('rate', rate)
+	engine.setProperty('volume', volume)
+	engine.say(text)
+	engine.runAndWait()
 ```
 
-### PDF Reader
+### PDF reader
 
 ```bash
 python audiblepdf.py
 ```
 
-This script will:
-1. Open a specified PDF file
-2. Extract text from pages
-3. Read the content aloud
+## Dependencies
 
-## 🔧 Configuration
+| Package | Purpose                 |
+|---------|-------------------------|
+| pyttsx3 | Text-to-speech engine   |
+| PyPDF2  | PDF text extraction     |
 
-### Customize Voice Settings
+## Notes
 
-```python
-import pyttsx3
-
-engine = pyttsx3.init()
-
-# Set speech rate (default is 200)
-engine.setProperty('rate', 150)
-
-# Set volume (0.0 to 1.0)
-engine.setProperty('volume', 0.9)
-
-# Change voice
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)  # Change index for different voices
-```
-
-## 📚 Dependencies
-
-| Package | Version | Purpose |
-|---------|---------|---------|
-| pyttsx3 | Latest | Text-to-speech conversion |
-| PyPDF2 | Latest | PDF text extraction |
-
-## 💡 Use Cases
-
-- **Accessibility**: Help visually impaired users access text content
-- **Multitasking**: Listen to documents while doing other tasks
-- **Learning**: Audio learning from written materials
-- **Testing**: Test voice interfaces and audio outputs
-
-## 🐛 Troubleshooting
-
-**Issue**: No audio output
-- Check system volume settings
-- Verify audio drivers are installed
-- Try different voice engines
-
-**Issue**: PDF not reading correctly
-- Ensure PDF is not image-based (scanned)
-- Check PDF is not password-protected
-- Verify file path is correct
-
-## 📄 License
-
-MIT License - Feel free to use and modify for your projects.
+- Audio output depends on OS voices installed.
+- For scanned/image PDFs, use OCR before reading.
 
 ---
 
-**Part of the [Python Projects Collection](../README.md)**
+Part of the [Python Projects Collection](../README.md)
