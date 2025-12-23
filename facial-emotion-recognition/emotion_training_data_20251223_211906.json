@@ -1,0 +1,254 @@
+[
+  {
+    "emotion": "Neutral",
+    "metrics": {
+      "smile_curve": 0.04178452491760254,
+      "mouth_aspect_ratio": 0.016576694345462294,
+      "eye_aspect_ratio": 0.0255224938785774,
+      "eyebrow_raise": 0.02022373676300049,
+      "left_brow_angle": 0.002970784902572632,
+      "right_brow_angle": -0.0045149922370910645
+    },
+    "timestamp": "2025-12-23T21:18:28.150368"
+  },
+  {
+    "emotion": "Neutral",
+    "metrics": {
+      "smile_curve": 0.039532601833343506,
+      "mouth_aspect_ratio": 0.010689019900152313,
+      "eye_aspect_ratio": 0.02448187839076257,
+      "eyebrow_raise": 0.023571893572807312,
+      "left_brow_angle": -0.0009250640869140625,
+      "right_brow_angle": -0.004967331886291504
+    },
+    "timestamp": "2025-12-23T21:18:31.550878"
+  },
+  {
+    "emotion": "Neutral",
+    "metrics": {
+      "smile_curve": 0.03906434774398804,
+      "mouth_aspect_ratio": 0.012996410991017738,
+      "eye_aspect_ratio": 0.02587215502769439,
+      "eyebrow_raise": 0.021649852395057678,
+      "left_brow_angle": 0.0017632246017456055,
+      "right_brow_angle": -0.005576282739639282
+    },
+    "timestamp": "2025-12-23T21:18:33.248713"
+  },
+  {
+    "emotion": "Happy",
+    "metrics": {
+      "smile_curve": 0.08230239152908325,
+      "mouth_aspect_ratio": 0.30764594437228854,
+      "eye_aspect_ratio": 0.016420106810452008,
+      "eyebrow_raise": 0.02548128366470337,
+      "left_brow_angle": -0.0018512308597564697,
+      "right_brow_angle": -0.010547012090682983
+    },
+    "timestamp": "2025-12-23T21:18:37.802477"
+  },
+  {
+    "emotion": "Happy",
+    "metrics": {
+      "smile_curve": 0.08685263991355896,
+      "mouth_aspect_ratio": 0.37512820961477406,
+      "eye_aspect_ratio": 0.01863823432722584,
+      "eyebrow_raise": 0.04959039390087128,
+      "left_brow_angle": -0.009494245052337646,
+      "right_brow_angle": -0.020574957132339478
+    },
+    "timestamp": "2025-12-23T21:18:39.347193"
+  },
+  {
+    "emotion": "Happy",
+    "metrics": {
+      "smile_curve": 0.09291091561317444,
+      "mouth_aspect_ratio": 0.5813337636242264,
+      "eye_aspect_ratio": 0.02951782249668215,
+      "eyebrow_raise": 0.047332003712654114,
+      "left_brow_angle": 0.0010389983654022217,
+      "right_brow_angle": -0.03445446491241455
+    },
+    "timestamp": "2025-12-23T21:18:41.145149"
+  },
+  {
+    "emotion": "Sad",
+    "metrics": {
+      "smile_curve": 0.027012765407562256,
+      "mouth_aspect_ratio": 0.004815448972313971,
+      "eye_aspect_ratio": 0.02279984128697913,
+      "eyebrow_raise": 0.018692180514335632,
+      "left_brow_angle": 0.006213396787643433,
+      "right_brow_angle": -0.01480776071548462
+    },
+    "timestamp": "2025-12-23T21:18:44.028012"
+  },
+  {
+    "emotion": "Sad",
+    "metrics": {
+      "smile_curve": 0.011775016784667969,
+      "mouth_aspect_ratio": 0.002914433385716994,
+      "eye_aspect_ratio": 0.020272844986862458,
+      "eyebrow_raise": 0.01991407573223114,
+      "left_brow_angle": 0.008652746677398682,
+      "right_brow_angle": -0.016243189573287964
+    },
+    "timestamp": "2025-12-23T21:18:45.163362"
+  },
+  {
+    "emotion": "Sad",
+    "metrics": {
+      "smile_curve": 0.013446778059005737,
+      "mouth_aspect_ratio": 0.0021741457613094145,
+      "eye_aspect_ratio": 0.01071265255289923,
+      "eyebrow_raise": 0.02865751087665558,
+      "left_brow_angle": 0.007416188716888428,
+      "right_brow_angle": -0.023059755563735962
+    },
+    "timestamp": "2025-12-23T21:18:46.618516"
+  },
+  {
+    "emotion": "Angry",
+    "metrics": {
+      "smile_curve": 0.03728601336479187,
+      "mouth_aspect_ratio": 0.14109397044723115,
+      "eye_aspect_ratio": 0.03271422661941942,
+      "eyebrow_raise": 0.007900252938270569,
+      "left_brow_angle": 0.02490389347076416,
+      "right_brow_angle": 0.003156810998916626
+    },
+    "timestamp": "2025-12-23T21:18:48.821175"
+  },
+  {
+    "emotion": "Angry",
+    "metrics": {
+      "smile_curve": 0.06596836447715759,
+      "mouth_aspect_ratio": 0.32651455328812096,
+      "eye_aspect_ratio": 0.024475206613946088,
+      "eyebrow_raise": 0.01329609751701355,
+      "left_brow_angle": 0.015029042959213257,
+      "right_brow_angle": -0.0028369128704071045
+    },
+    "timestamp": "2025-12-23T21:18:50.357586"
+  },
+  {
+    "emotion": "Angry",
+    "metrics": {
+      "smile_curve": 0.07916182279586792,
+      "mouth_aspect_ratio": 0.20172997825137975,
+      "eye_aspect_ratio": 0.018560576181711873,
+      "eyebrow_raise": 0.008928045630455017,
+      "left_brow_angle": 0.017476290464401245,
+      "right_brow_angle": 0.0015657246112823486
+    },
+    "timestamp": "2025-12-23T21:18:51.630511"
+  },
+  {
+    "emotion": "Surprised",
+    "metrics": {
+      "smile_curve": 0.06270948052406311,
+      "mouth_aspect_ratio": 0.6587987300822182,
+      "eye_aspect_ratio": 0.03220198909468165,
+      "eyebrow_raise": 0.05084037780761719,
+      "left_brow_angle": -0.010827124118804932,
+      "right_brow_angle": -0.02698764204978943
+    },
+    "timestamp": "2025-12-23T21:18:54.088593"
+  },
+  {
+    "emotion": "Surprised",
+    "metrics": {
+      "smile_curve": 0.09204262495040894,
+      "mouth_aspect_ratio": 1.2003645650666774,
+      "eye_aspect_ratio": 0.03178061264137866,
+      "eyebrow_raise": 0.05413898825645447,
+      "left_brow_angle": -0.014056563377380371,
+      "right_brow_angle": -0.028013944625854492
+    },
+    "timestamp": "2025-12-23T21:18:55.150342"
+  },
+  {
+    "emotion": "Surprised",
+    "metrics": {
+      "smile_curve": 0.0965857207775116,
+      "mouth_aspect_ratio": 1.2221535902022815,
+      "eye_aspect_ratio": 0.025740297808575334,
+      "eyebrow_raise": 0.05085213482379913,
+      "left_brow_angle": -0.017052769660949707,
+      "right_brow_angle": -0.03025391697883606
+    },
+    "timestamp": "2025-12-23T21:18:56.527629"
+  },
+  {
+    "emotion": "Disgusted",
+    "metrics": {
+      "smile_curve": 0.0332283079624176,
+      "mouth_aspect_ratio": 0.2401879823488143,
+      "eye_aspect_ratio": 0.01809004520611136,
+      "eyebrow_raise": 0.008735030889511108,
+      "left_brow_angle": 0.012669086456298828,
+      "right_brow_angle": -0.0013092756271362305
+    },
+    "timestamp": "2025-12-23T21:18:58.936889"
+  },
+  {
+    "emotion": "Disgusted",
+    "metrics": {
+      "smile_curve": 0.027157336473464966,
+      "mouth_aspect_ratio": 0.011589175577012235,
+      "eye_aspect_ratio": 0.024904667582283664,
+      "eyebrow_raise": 0.013864696025848389,
+      "left_brow_angle": 0.021421372890472412,
+      "right_brow_angle": -0.0030784308910369873
+    },
+    "timestamp": "2025-12-23T21:19:00.269002"
+  },
+  {
+    "emotion": "Disgusted",
+    "metrics": {
+      "smile_curve": 0.04058319330215454,
+      "mouth_aspect_ratio": 0.250286295482635,
+      "eye_aspect_ratio": 0.023941852982540847,
+      "eyebrow_raise": 0.010294735431671143,
+      "left_brow_angle": 0.018824756145477295,
+      "right_brow_angle": -0.0010291635990142822
+    },
+    "timestamp": "2025-12-23T21:19:01.639672"
+  },
+  {
+    "emotion": "Sleepy",
+    "metrics": {
+      "smile_curve": 0.03300255537033081,
+      "mouth_aspect_ratio": 0.010044892329890198,
+      "eye_aspect_ratio": 0.00119761163725204,
+      "eyebrow_raise": 0.04940524697303772,
+      "left_brow_angle": 0.01085856556892395,
+      "right_brow_angle": -0.02095508575439453
+    },
+    "timestamp": "2025-12-23T21:19:04.281224"
+  },
+  {
+    "emotion": "Sleepy",
+    "metrics": {
+      "smile_curve": 0.022515714168548584,
+      "mouth_aspect_ratio": 0.007515238872223269,
+      "eye_aspect_ratio": 0.0030821300942965755,
+      "eyebrow_raise": 0.05695997178554535,
+      "left_brow_angle": 0.013345122337341309,
+      "right_brow_angle": -0.04569670557975769
+    },
+    "timestamp": "2025-12-23T21:19:05.416779"
+  },
+  {
+    "emotion": "Sleepy",
+    "metrics": {
+      "smile_curve": 0.060017675161361694,
+      "mouth_aspect_ratio": 0.8312567727358078,
+      "eye_aspect_ratio": 0.006388429806124643,
+      "eyebrow_raise": 0.050932541489601135,
+      "left_brow_angle": 0.007550060749053955,
+      "right_brow_angle": -0.04986974596977234
+    },
+    "timestamp": "2025-12-23T21:19:06.488716"
+  }
+]

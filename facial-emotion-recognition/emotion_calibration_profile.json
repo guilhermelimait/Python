@@ -1,0 +1,58 @@
+{
+  "Neutral": {
+    "smile_curve": 0.04012715816497803,
+    "mouth_aspect_ratio": 0.013420708412210783,
+    "eye_aspect_ratio": 0.025292175765678118,
+    "eyebrow_raise": 0.021815160910288494,
+    "left_brow_angle": 0.0012696484724680583,
+    "right_brow_angle": -0.005019535621007283
+  },
+  "Happy": {
+    "smile_curve": 0.08735531568527222,
+    "mouth_aspect_ratio": 0.4213693058704297,
+    "eye_aspect_ratio": 0.02152538787812,
+    "eyebrow_raise": 0.04080122709274292,
+    "left_brow_angle": -0.003435492515563965,
+    "right_brow_angle": -0.021858811378479004
+  },
+  "Sad": {
+    "smile_curve": 0.01741152008374532,
+    "mouth_aspect_ratio": 0.0033013427064467935,
+    "eye_aspect_ratio": 0.01792844627558027,
+    "eyebrow_raise": 0.022421255707740784,
+    "left_brow_angle": 0.007427444060643514,
+    "right_brow_angle": -0.01803690195083618
+  },
+  "Angry": {
+    "smile_curve": 0.0608054002126058,
+    "mouth_aspect_ratio": 0.22311283399557727,
+    "eye_aspect_ratio": 0.025250003138359126,
+    "eyebrow_raise": 0.010041465361913046,
+    "left_brow_angle": 0.01913640896479289,
+    "right_brow_angle": 0.0006285409132639567
+  },
+  "Surprised": {
+    "smile_curve": 0.08377927541732788,
+    "mouth_aspect_ratio": 1.0271056284503925,
+    "eye_aspect_ratio": 0.029907633181545212,
+    "eyebrow_raise": 0.05194383362929026,
+    "left_brow_angle": -0.013978819052378336,
+    "right_brow_angle": -0.028418501218159992
+  },
+  "Disgusted": {
+    "smile_curve": 0.03365627924601237,
+    "mouth_aspect_ratio": 0.16735448446948717,
+    "eye_aspect_ratio": 0.02231218859031196,
+    "eyebrow_raise": 0.010964820782343546,
+    "left_brow_angle": 0.017638405164082844,
+    "right_brow_angle": -0.0018056233723958333
+  },
+  "Sleepy": {
+    "smile_curve": 0.03851198156674703,
+    "mouth_aspect_ratio": 0.28293896797930707,
+    "eye_aspect_ratio": 0.0035560571792244196,
+    "eyebrow_raise": 0.05243258674939474,
+    "left_brow_angle": 0.010584582885106405,
+    "right_brow_angle": -0.03884051243464152
+  }
+}
