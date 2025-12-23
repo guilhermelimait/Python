@@ -4,12 +4,39 @@
 Detects emotions (Happy, Sad, Surprised, Angry, Neutral) instantly based on facial geometry.
 Much faster than LLM analysis - works in real-time!
 """
-import cv2
-import mediapipe as mp
-import numpy as np
+import importlib
+import subprocess
+import sys
 import json
 from datetime import datetime
 import math
+
+
+def ensure_dependencies():
+    missing = []
+    for pkg, module in [
+        ("opencv-python", "cv2"),
+        ("mediapipe", "mediapipe"),
+        ("numpy", "numpy"),
+    ]:
+        try:
+            importlib.import_module(module)
+        except ImportError:
+            missing.append(pkg)
+
+    if missing:
+        print(f"Installing missing packages: {', '.join(missing)}")
+        result = subprocess.run([sys.executable, "-m", "pip", "install", *missing])
+        if result.returncode != 0:
+            print("Package installation failed. Please install manually and retry.")
+            sys.exit(1)
+
+
+ensure_dependencies()
+
+import cv2
+import mediapipe as mp
+import numpy as np
 
 
 class EmotionDetector:

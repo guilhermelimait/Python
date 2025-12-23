@@ -3,11 +3,38 @@ Face Puppeteer - Control a photo with your face movements
 Uses MediaPipe to map your facial movements to an imported image
 """
 
+import importlib
+import subprocess
+import sys
+from datetime import datetime
+import os
+
+
+def ensure_dependencies():
+    missing = []
+    for pkg, module in [
+        ("opencv-python", "cv2"),
+        ("mediapipe", "mediapipe"),
+        ("numpy", "numpy"),
+    ]:
+        try:
+            importlib.import_module(module)
+        except ImportError:
+            missing.append(pkg)
+
+    if missing:
+        print(f"Installing missing packages: {', '.join(missing)}")
+        result = subprocess.run([sys.executable, "-m", "pip", "install", *missing])
+        if result.returncode != 0:
+            print("Package installation failed. Please install manually and retry.")
+            sys.exit(1)
+
+
+ensure_dependencies()
+
 import cv2
 import mediapipe as mp
 import numpy as np
-from datetime import datetime
-import os
 
 class FacePuppeteer:
     def __init__(self):

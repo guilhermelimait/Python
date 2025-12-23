@@ -1,13 +1,34 @@
 # WordPress to GitHub Export
+import importlib
 import os
 import re
-import requests
+import subprocess
 import sys
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+import requests
+
+
+def ensure_dependencies():
+    missing = []
+    for pkg, module in [("requests", "requests"), ("beautifulsoup4", "bs4"), ("urllib3", "urllib3")]:
+        try:
+            importlib.import_module(module)
+        except ImportError:
+            missing.append(pkg)
+
+    if missing:
+        print(f"Installing missing packages: {', '.join(missing)}")
+        result = subprocess.run([sys.executable, "-m", "pip", "install", *missing])
+        if result.returncode != 0:
+            print("Package installation failed. Please install manually and retry.")
+            sys.exit(1)
+
+
+ensure_dependencies()
 
 # Simple tool to export WordPress posts into categorized Markdown files for GitHub.
 
