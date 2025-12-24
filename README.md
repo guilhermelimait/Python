@@ -4,24 +4,21 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/yourusername)
 
-A comprehensive collection of practical Python projects ranging from AI/ML applications to automation utilities. This repository showcases real-world implementations that developers can use, learn from, and contribute to.
+A comprehensive collection of practical **Python** projects ranging from AI/ML applications to automation tools. This repository showcases real-world implementations for developers and IT professionals.
 
 ---
 
 ## 📋 Table of Contents
 
-- [Featured Projects](#-featured-projects)
-- [Utility Scripts](#-utility-scripts)
-- [Learning Examples](#-learning-examples)
+- [Python Projects](#-python-projects)
 - [Installation](#-installation)
-- [Dependencies](#-dependencies)
 - [Quick Start](#-quick-start)
 - [Contributing](#-contributing)
 - [License](#-license)
 
 ---
 
-## 🌟 Featured Projects
+## 🐍 Python Projects
 
 ### 1. **Facial Emotion Recognition Suite** 🎭
 **Location:** `facial-emotion-recognition/`
